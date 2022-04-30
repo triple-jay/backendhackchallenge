@@ -12,8 +12,7 @@ db = SQLAlchemy()
 
 class User(db.Model): 
     """"
-    User model: has a one-to-many relationship with Task, a one-to-many reltionship with Event,
-                and a one-to-one relationship with session
+    User model: has a one-to-many relationship with Task and a one-to-many reltionship with Event
     """
     __tablename__ = "users" 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -110,9 +109,10 @@ class Event(db.Model):
     __tablename__ = "events"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     event_name = db.Column(db.String, nullable=False)
-    start_time=db.Column(db.String, nullable=False)
-    start_time=db.Column(db.String, nullable=False)
-    priority = db.Column(db.Integer, nullable=False)
+    description = db.Column(db.String)
+    start_time = db.Column(db.String, nullable=False)
+    end_time = db.Column(db.String, nullable=False)
+    color = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     def __init(self, **kwargs): 
@@ -120,9 +120,10 @@ class Event(db.Model):
         Initialize Task object
         """
         self.event_name = kwargs.get("event_name")
+        self.description("description", "")
         self.start_time = kwargs.get("start_time")
         self.end_time = kwargs.get("end_time")
-        self.priority = kwargs.get("priority")
+        self.color = kwargs.get("color", "")
         self.user_id = kwargs.get("user_id")
 
     def serialize(self):
@@ -132,9 +133,10 @@ class Event(db.Model):
         return {
             "id": self.id,
             "event_name": self.event_name,
+            "description": self.description,
             "start_time": self.start_time,
             "end_time": self.end_time,
-            "priority": self.priority,
+            "color": self.color,
             "user_id": self.user_id
         }
 
