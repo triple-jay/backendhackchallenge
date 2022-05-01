@@ -64,7 +64,7 @@ def get_user_from_request(request):
     if not success:
         return EXTRACT_FAIL
     user = get_user_by_session_token(token)
-    if not user or user.verify_session_token(token):
+    if not user or not user.verify_session_token(token):
         return INVALID_TOKEN
     return user.id
 
@@ -176,12 +176,11 @@ def add_task():
     
     body = json.loads(request.data)
     task_name = body.get('task_name')
-    due_date = datetime.datetime.now()
-    completed = body.get('done')
+    due_date = body.get('due_date')
+    completed = body.get('completed')
     priority = body.get('priority')
-    user_id = user.id
 
-    if task_name is None or completed is None or priority is None:
+    if task_name is None or due_date is None or completed is None or priority is None:
         return failure_response('One or more fields not supplied', 400)
     
     new_task = Task(
@@ -277,7 +276,7 @@ def delete_task(task_id):
     """
     Delete the task specified by [task_id]
     """
-   user_id = get_user_from_request(request)
+    user_id = get_user_from_request(request)
     if user_id == EXTRACT_FAIL:
         return failure_response('Failed to extract token', 400)
     elif user_id == INVALID_TOKEN:
@@ -331,7 +330,7 @@ def create_event():
     end_time = body.get('end_time')
     color = body.get('color')
 
-    if event_name is None or description is None or start_Time is None or end_time is None or color is None:
+    if event_name is None or description is None or start_time is None or end_time is None or color is None:
         return failure_response('One or more fields not supplied', 400)
 
     new_event = Event(event_name=event_name, description=description, start_time=start_time,
@@ -357,7 +356,7 @@ def get_event_by_id(event_id):
 
     if event is None:
         return failure_response('Event not found')
-    elif event.user_id != event:
+    elif event.user_id != user_id:
         # The user didn't create the task, so the user is not allowed to access
         return failure_response('You can not access this event', 401)
 
@@ -380,6 +379,8 @@ def update_event(event_id):
     elif event.user_id != user_id:
         # The user didn't create the task, so the user is not allowed to access
         return failure_response('You can not access this event', 401)
+    
+    body = json.loads(request.data)
     
     event_name = body.get('event_name')
     description = body.get('description')
@@ -407,7 +408,7 @@ def delete_event(event_id):
     """
     Delete the event specified by [event_id]
     """
-   user_id = get_user_from_request(request)
+    user_id = get_user_from_request(request)
     if user_id == EXTRACT_FAIL:
         return failure_response('Failed to extract token', 400)
     elif user_id == INVALID_TOKEN:
@@ -424,7 +425,5 @@ def delete_event(event_id):
     db.session.commit()
     return success_response(event.serialize())
 
-
-@app.route('/')
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

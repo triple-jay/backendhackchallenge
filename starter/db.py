@@ -103,7 +103,7 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     task_name = db.Column(db.String, nullable=False)
     due_date = db.Column(db.Integer, nullable=False)
-    completed = db.Column(db.Integer, nullable=False)
+    completed = db.Column(db.Boolean, nullable=False)
     priority = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
