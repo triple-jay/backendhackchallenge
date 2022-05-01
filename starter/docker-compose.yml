@@ -1,0 +1,6 @@
+version: '3'
+services:
+  demo:
+    image: scheduler/backend
+    ports:
+      - "5000:5000"
