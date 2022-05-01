@@ -7,18 +7,18 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
 class User(db.Model):
     """
     User model
     """
-    __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key=True)
+    __tablename__ = 'user'
 
     # User information
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False, unique=True)
     password_digest = db.Column(db.String, nullable=False)
-    tasks = db.relationship('Task', cascade = 'delete')
+    events = db.relationship('Event', cascade='delete') 
+    tasks = db.relationship('Task', cascade='delete')
 
     # Session information
     session_token = db.Column(db.String, nullable=False, unique=True)
@@ -67,60 +67,60 @@ class User(db.Model):
         Verifies the update token of a user
         """
         return update_token == self.update_token
-
+    
+    def serialize(self): 
+        """
+        Convert User object to dictionary
+        """ 
+        return {
+            'id': self.id,
+            'events': [e.serialize() for e in self.events],
+            'tasks': [t.serialize() for t in self.tasks]
+        }
+    
     def get_all_tasks(self):
-        '''
-        return all tasks associated with this user
-        '''
+        """
+        Gets all tasks for a user
+        """
         return {
             'tasks': [t.serialize() for t in self.tasks]
         }
-
     
-
-class Session(db.Model):
-    '''
-    Session has one to one relationship with User
-    Fields are id INTEGER PRIMARY KEY, session_token STRING, session_expiration DATETIME, update_token STRING,
-    user_id INTEGER REFERENCES user.id
-    '''
-
-    __tablename__ = 'sessions'
-    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    session_token = db.Column(db.String, nullable = False)
-    session_expiration = db.Column(db.DateTime, nullable=False)
-    update_token = db.Column(db.String, nullable=False, unique=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    def get_all_events(self):
+        """
+        Gets all events for a user
+        """
+        return {
+            'events': [e.serialize() for e in self.events]
+        }
 
 class Task(db.Model):
-    '''
+    """
     Task has many to one relationship with User
     Fields are id, user_id, title, description, time, done
-    '''
-    __tablename__ = 'tasks'
-    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    task_name = db.Column(db.String, nullable = False)
-    due_date = db.Column(db.DateTime, nullable = False)
-    completed = db.Column(db.Integer, nullable = False)
-    priority = db.Column(db.Integer, nullable = False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-
-
+    """
+    __tablename__ = 'task'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    task_name = db.Column(db.String, nullable=False)
+    due_date = db.Column(db.Integer, nullable=False)
+    completed = db.Column(db.Integer, nullable=False)
+    priority = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __init__(self, **kwargs):
-        '''
+        """
         Initializes Task object
-        '''
-        self.user_id = kwargs.get('user_id','')
-        self.task_name = kwargs.get('task_name','')
-        self.due_date = kwargs.get('due_date','')
-        self.completed = kwargs.get('completed',0)
-        self.priority = kwargs.get('priority', 0)
+        """
+        self.user_id = kwargs.get('user_id')
+        self.task_name = kwargs.get('task_name')
+        self.due_date = kwargs.get('due_date')
+        self.completed = kwargs.get('completed')
+        self.priority = kwargs.get('priority')
 
     def serialize(self):
-        '''
-        serializes the Task
-        '''
+        """
+        Serializes the task
+        """
         return{
             'task_id': self.id,
             'task_name': self.task_name,
@@ -129,4 +129,39 @@ class Task(db.Model):
             'priority': self.priority
         }
 
-    
+class Event(db.Model):
+    """
+    Event model: has a many-to-one relationship with User
+    """
+    __tablename__ = 'event'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    event_name = db.Column(db.String, nullable=False)
+    description = db.Column(db.String)
+    start_time = db.Column(db.Integer, nullable=False)
+    end_time = db.Column(db.Integer, nullable=False)
+    color = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __init(self, **kwargs): 
+        """
+        Initialize Task object
+        """
+        self.event_name = kwargs.get('event_name')
+        self.description('description')
+        self.start_time = kwargs.get('start_time')
+        self.end_time = kwargs.get('end_time')
+        self.color = kwargs.get('color')
+        self.user_id = kwargs.get('user_id')
+
+    def serialize(self):
+        """
+        Convert Event object to dictionary
+        """
+        return {
+            'id': self.id,
+            'event_name': self.event_name,
+            'description': self.description,
+            'start_time': self.start_time,
+            'end_time': self.end_time,
+            'color': self.color
+        }
