@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6132bcc7-ec97-4ff9-86ea-932531e4d6bf",
+		"_postman_id": "12a6deba-d3a6-439e-9b9e-6e6d2b86c071",
 		"name": "hack_challenge",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"jeremy\",\n    \"password\": \"jeremyisaverycoolandamazingperson\"\n}"
+					"raw": "{\n    \"first_name\": \"jeremy\",\n    \"username\": \"jeremy\",\n    \"password\": \"jeremyisaverycoolandamazingperson\"\n}"
 				},
 				"url": {
 					"raw": "{{endpoint}}register/",
