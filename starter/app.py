@@ -74,18 +74,19 @@ def register_account():
     Endpoint for registering a new user with email and password from post
     """
     body = json.loads(request.data)
+    first_name = body.get('first_name')
     username = body.get('username')
     password = body.get('password')
 
-    if username is None or password is None:
-        return failure_response('Missing username or password')
+    if first_name is None or username is None or password is None:
+        return failure_response('Missing first name, username, or password')
     
     user = User.query.filter(User.username == username).first()
 
     if user is not None:
         return failure_response('User exists')
     
-    user = User(username=username, password=password)
+    user = User(first_name=first_name, username=username, password=password)
 
     db.session.add(user)
     db.session.commit()
@@ -94,7 +95,7 @@ def register_account():
         {
             'session_token': user.session_token,
             'session_expiration': str(user.session_expiration),
-            'update token': user.update_token
+            'update_token': user.update_token
 
         }, 201
     )
@@ -329,12 +330,13 @@ def create_event():
     start_time = body.get('start_time')
     end_time = body.get('end_time')
     color = body.get('color')
+    location = body.get('location')
 
     if event_name is None or description is None or start_time is None or end_time is None or color is None:
         return failure_response('One or more fields not supplied', 400)
 
     new_event = Event(event_name=event_name, description=description, start_time=start_time,
-    end_time=end_time, color=color, user_id=user_id)
+    end_time=end_time, color=color, location=location, user_id=user_id)
 
     db.session.add(new_event)
     db.session.commit()
@@ -387,6 +389,7 @@ def update_event(event_id):
     start_time = body.get('start_time')
     end_time = body.get('end_time')
     color = body.get('color')
+    location = body.get('location')
 
     # Update fields if they are supplied (not null)
     if event_name is not None:
@@ -399,6 +402,8 @@ def update_event(event_id):
         event.end_time = end_time
     if color is not None:
         event.color = color
+    if location is not None:
+        event.location = location
     
     db.session.commit()
     return success_response(event.serialize())

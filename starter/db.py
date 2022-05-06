@@ -15,6 +15,7 @@ class User(db.Model):
 
     # User information
     id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String, nullable=False)
     username = db.Column(db.String, nullable=False, unique=True)
     password_digest = db.Column(db.String, nullable=False)
     events = db.relationship('Event', cascade='delete') 
@@ -29,6 +30,7 @@ class User(db.Model):
         """
         Initializes a User object
         """
+        self.first_name = kwargs.get("first_name")
         self.username = kwargs.get("username")
         self.password_digest = bcrypt.hashpw(kwargs.get("password").encode("utf8"), bcrypt.gensalt(rounds=13))
         self.renew_session()
@@ -140,6 +142,7 @@ class Event(db.Model):
     start_time = db.Column(db.Integer, nullable=False)
     end_time = db.Column(db.Integer, nullable=False)
     color = db.Column(db.String)
+    location = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __init(self, **kwargs): 
@@ -147,10 +150,11 @@ class Event(db.Model):
         Initialize Task object
         """
         self.event_name = kwargs.get('event_name')
-        self.description('description')
+        self.description = kwargs.get('description')
         self.start_time = kwargs.get('start_time')
         self.end_time = kwargs.get('end_time')
         self.color = kwargs.get('color')
+        self.location = kwargs.get('location')
         self.user_id = kwargs.get('user_id')
 
     def serialize(self):
@@ -163,5 +167,6 @@ class Event(db.Model):
             'description': self.description,
             'start_time': self.start_time,
             'end_time': self.end_time,
-            'color': self.color
+            'color': self.color,
+            'location': self.location
         }
