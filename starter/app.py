@@ -258,6 +258,8 @@ def update_task(task_id):
     description = body.get('description')
     time = body.get('time')
     completed = body.get('completed')
+    priority = body.get('priority')
+
 
     # Update fields if they are supplied (not null)
     if task_name is not None:
@@ -268,6 +270,8 @@ def update_task(task_id):
         task.time = time
     if completed is not None:
         task.completed = completed
+    if priority is not None:
+        task.priority = priority
     
     db.session.commit()
     task = Task.query.filter_by(id=task_id).first()
