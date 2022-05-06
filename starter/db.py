@@ -126,7 +126,7 @@ class Task(db.Model):
         return{
             'task_id': self.id,
             'task_name': self.task_name,
-            'due_date': str(self.due_date),
+            'due_date': self.due_date,
             'completed': self.completed,
             'priority': self.priority
         }
