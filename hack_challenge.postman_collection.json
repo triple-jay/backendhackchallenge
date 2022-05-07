@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "12a6deba-d3a6-439e-9b9e-6e6d2b86c071",
-		"name": "hack_challenge",
+		"_postman_id": "f1928943-c445-4448-9a58-64b7a42448f4",
+		"name": "hack_challenge Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -15,9 +15,9 @@
 					"raw": "{\n    \"first_name\": \"jeremy\",\n    \"username\": \"jeremy\",\n    \"password\": \"jeremyisaverycoolandamazingperson\"\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}register/",
+					"raw": "{{deployment}}register/",
 					"host": [
-						"{{endpoint}}register"
+						"{{deployment}}register"
 					],
 					"path": [
 						""
@@ -36,9 +36,9 @@
 					"raw": "{\n    \"username\": \"jeremy\",\n    \"password\": \"jeremyisaverycoolandamazingperson\"\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}login/",
+					"raw": "{{deployment}}login/",
 					"host": [
-						"{{endpoint}}login"
+						"{{deployment}}login"
 					],
 					"path": [
 						""
@@ -63,9 +63,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{endpoint}}session/",
+					"raw": "{{deployment}}session/",
 					"host": [
-						"{{endpoint}}session"
+						"{{deployment}}session"
 					],
 					"path": [
 						""
@@ -90,9 +90,9 @@
 					"raw": "{\n    \"task_name\": \"Do laundry\",\n    \"due_date\": 1651448682,\n    \"completed\": false,\n    \"priority\": 0\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}tasks/",
+					"raw": "{{deployment}}tasks/",
 					"host": [
-						"{{endpoint}}tasks"
+						"{{deployment}}tasks"
 					],
 					"path": [
 						""
@@ -113,9 +113,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpoint}}tasks/",
+					"raw": "{{deployment}}tasks/",
 					"host": [
-						"{{endpoint}}tasks"
+						"{{deployment}}tasks"
 					],
 					"path": [
 						""
@@ -143,12 +143,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpoint}}tasks/1/",
+					"raw": "{{deployment}}tasks/6/",
 					"host": [
-						"{{endpoint}}tasks"
+						"{{deployment}}tasks"
 					],
 					"path": [
-						"1",
+						"6",
 						""
 					]
 				}
@@ -167,9 +167,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpoint}}tasks/1/",
+					"raw": "{{deployment}}tasks/1/",
 					"host": [
-						"{{endpoint}}tasks"
+						"{{deployment}}tasks"
 					],
 					"path": [
 						"1",
@@ -186,12 +186,12 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"jeremyjung\",\n    \"password\": \"jeremyissupersuperamazing\"\n}"
+					"raw": "{\n    \"first_name\": \"jeremy\",\n    \"username\": \"jeremyjung\",\n    \"password\": \"jeremyissupersuperamazing\"\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}register/",
+					"raw": "{{deployment}}register/",
 					"host": [
-						"{{endpoint}}register"
+						"{{deployment}}register"
 					],
 					"path": [
 						""
@@ -216,9 +216,9 @@
 					"raw": "{\n    \"task_name\": \"Do homework\",\n    \"due_date\": 1651448682,\n    \"completed\": false,\n    \"priority\": 1\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}tasks/",
+					"raw": "{{deployment}}tasks/",
 					"host": [
-						"{{endpoint}}tasks"
+						"{{deployment}}tasks"
 					],
 					"path": [
 						""
@@ -239,9 +239,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpoint}}tasks/",
+					"raw": "{{deployment}}tasks/",
 					"host": [
-						"{{endpoint}}tasks"
+						"{{deployment}}tasks"
 					],
 					"path": [
 						""
@@ -269,9 +269,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpoint}}tasks/1/",
+					"raw": "{{deployment}}tasks/1/",
 					"host": [
-						"{{endpoint}}tasks"
+						"{{deployment}}tasks"
 					],
 					"path": [
 						"1",
@@ -293,9 +293,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpoint}}tasks/1/",
+					"raw": "{{deployment}}tasks/1/",
 					"host": [
-						"{{endpoint}}tasks"
+						"{{deployment}}tasks"
 					],
 					"path": [
 						"1",
@@ -317,9 +317,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpoint}}tasks/",
+					"raw": "{{deployment}}tasks/",
 					"host": [
-						"{{endpoint}}tasks"
+						"{{deployment}}tasks"
 					],
 					"path": [
 						""
@@ -347,9 +347,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{endpoint}}events/",
+					"raw": "{{deployment}}events/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						""
@@ -374,9 +374,9 @@
 					"raw": "{\n    \"event_name\": \"CS 1110\",\n    \"description\": \"Lecture\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}events/",
+					"raw": "{{deployment}}events/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						""
@@ -404,9 +404,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{endpoint}}events/1/",
+					"raw": "{{deployment}}events/1/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						"1",
@@ -435,9 +435,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{endpoint}}events/1/",
+					"raw": "{{deployment}}events/1/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						"1",
@@ -463,9 +463,9 @@
 					"raw": "{\n    \"event_name\": \"CS 2110\",\n    \"description\": \"Lecture\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}events/1/",
+					"raw": "{{deployment}}events/1/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						"1",
@@ -491,9 +491,9 @@
 					"raw": "{\n    \"event_name\": \"CS 2110\",\n    \"description\": \"Lecture\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}events/1/",
+					"raw": "{{deployment}}events/1/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						"1",
@@ -519,9 +519,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{endpoint}}events/1/",
+					"raw": "{{deployment}}events/1/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						"1",
@@ -547,9 +547,9 @@
 					"raw": "{\n    \"event_name\": \"CS 3110\",\n    \"description\": \"Discussion\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}events/",
+					"raw": "{{deployment}}events/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						""
@@ -574,9 +574,9 @@
 					"raw": "{\n    \"event_name\": \"CS 4110\",\n    \"description\": \"Discussion\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}events/",
+					"raw": "{{deployment}}events/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						""
@@ -604,9 +604,9 @@
 					"raw": "{\n    \"event_name\": \"CS 4110\",\n    \"description\": \"Discussion\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}events/",
+					"raw": "{{deployment}}events/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						""
@@ -631,9 +631,9 @@
 					"raw": "{\n    \"event_name\": \"CS 4110\",\n    \"description\": \"Discussion\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
 				},
 				"url": {
-					"raw": "{{endpoint}}events/1/",
+					"raw": "{{deployment}}events/1/",
 					"host": [
-						"{{endpoint}}events"
+						"{{deployment}}events"
 					],
 					"path": [
 						"1",
@@ -672,7 +672,7 @@
 		},
 		{
 			"key": "session_token",
-			"value": "15ea270b91a69983cb6c4eba13e45444f632ffe2"
+			"value": "9357202e868d9ef9a8ce292580402145dff440be"
 		},
 		{
 			"key": "update_token",
@@ -681,6 +681,11 @@
 		{
 			"key": "user2_sess_token",
 			"value": "4dadb682a29b5cd963d334879371c4a7a40a5659"
+		},
+		{
+			"key": "deployment",
+			"value": "http://34.130.0.202/api/",
+			"type": "string"
 		}
 	]
 }
