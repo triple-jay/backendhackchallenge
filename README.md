@@ -17,8 +17,8 @@ The User table is linked to the Event table in a one-to-many relationship, with 
 
 The User table is linked to the Task table in a one-to-many relationship, with a foreign key in each task referencing the user id of the user the task belongs to.
 
-Database model
+### Database model
 
-![databasemodel](https://user-images.githubusercontent.com/40004551/167235741-92190eea-ecf8-43d0-90ff-7a77822b408f.png)
+![datamodel](https://user-images.githubusercontent.com/40004551/167235781-de714e58-d800-4708-b96b-aee0491ae0c7.png)
 
 All of our routes are explained in our API specification document.
