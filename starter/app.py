@@ -256,7 +256,7 @@ def update_task(task_id):
     body = json.loads(request.data)
     task_name = body.get('task_name')
     description = body.get('description')
-    time = body.get('time')
+    due_date = body.get('due_date')
     completed = body.get('completed')
     priority = body.get('priority')
 
@@ -266,8 +266,8 @@ def update_task(task_id):
         task.task_name = task_name
     if description is not None:
         task.description = description
-    if time is not None:
-        task.time = time
+    if due_date is not None:
+        task.due_date = due_date
     if completed is not None:
         task.completed = completed
     if priority is not None:
