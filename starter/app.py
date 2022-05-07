@@ -254,22 +254,28 @@ def update_task(task_id):
         return failure_response('You can not access this task', 401)
     
     body = json.loads(request.data)
-    title = body.get('title')
+    task_name = body.get('task_name')
     description = body.get('description')
-    time = body.get('time')
-    done = body.get('done')
+    due_date = body.get('due_date')
+    completed = body.get('completed')
+    priority = body.get('priority')
+
 
     # Update fields if they are supplied (not null)
-    if title is not None:
-        task.title = title
+    if task_name is not None:
+        task.task_name = task_name
     if description is not None:
         task.description = description
-    if time is not None:
-        task.time = time
-    if done is not None:
-        task.done = done
+    if due_date is not None:
+        task.due_date = due_date
+    if completed is not None:
+        task.completed = completed
+    if priority is not None:
+        task.priority = priority
     
     db.session.commit()
+    task = Task.query.filter_by(id=task_id).first()
+
     return success_response(task.serialize())
 
 @app.route('/api/tasks/<int:task_id>/', methods = ['DELETE'])
@@ -406,6 +412,8 @@ def update_event(event_id):
         event.location = location
     
     db.session.commit()
+    event = Event.query.filter_by(id=event_id).first()
+
     return success_response(event.serialize())
 
 @app.route('/api/events/<int:event_id>/', methods = ['DELETE'])
