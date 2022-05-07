@@ -16,3 +16,5 @@ The Task table contains all the tasks ever made in our app. Each task has a lot 
 The User table is linked to the Event table in a one-to-many relationship, with a foreign key in each event referencing the user id of the user the event belongs to.
 
 The User table is linked to the Task table in a one-to-many relationship, with a foreign key in each task referencing the user id of the user the task belongs to.
+
+All of our rotes are described in our API specification document.
